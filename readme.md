@@ -51,29 +51,29 @@ Lacker says that these answers are good guesses of the correct answer because th
 
 #### Layer 14
 
-![1_EyfWnqB6Lsrq36IcDmOs4w](Pictures\FabioM.Graetz\1_EyfWnqB6Lsrq36IcDmOs4w.jpg) 
+<img src="Pictures\FabioM.Graetz\1_EyfWnqB6Lsrq36IcDmOs4w.jpg" alt="1_EyfWnqB6Lsrq36IcDmOs4w"  /> 
 
 #### Layer 20
 
-![1_MznCLV-oe3_HAXzbojw-zg](Pictures\FabioM.Graetz\1_MznCLV-oe3_HAXzbojw-zg.jpg) 
+<img src="Pictures\FabioM.Graetz\1_MznCLV-oe3_HAXzbojw-zg.jpg" alt="1_MznCLV-oe3_HAXzbojw-zg"  /> 
 
 #### Layer 30
 
-![1_YT-pI4ECo68S10Zgp5x_QQ](Pictures\FabioM.Graetz\1_YT-pI4ECo68S10Zgp5x_QQ.jpg) 
+<img src="Pictures\FabioM.Graetz\1_YT-pI4ECo68S10Zgp5x_QQ.jpg" alt="1_YT-pI4ECo68S10Zgp5x_QQ"  /> 
 
 #### Layer 40
 
-![1_HEMGatXVZLGIv4TRYFgtzQ](Pictures\FabioM.Graetz\1_HEMGatXVZLGIv4TRYFgtzQ.jpg) 
+<img src="Pictures\FabioM.Graetz\1_HEMGatXVZLGIv4TRYFgtzQ.jpg" alt="1_HEMGatXVZLGIv4TRYFgtzQ"  /> 
 
 The neural network was designed to classify images. We can see that its understanding of a class of image is developed by creating an hierarchal structure in which each layer constructs a feature out of layers below it, eventually leading up to the high level features such as what class an image is.
 
 The same principle applies to any neural network. So to find these correlations it's best to start looking from top to bottom. Since the decoder’s job is to generate text/probabilities of tokens, they should be omitted from data collection. An [illustration of text transformers by Jay Alammar](http://jalammar.github.io/illustrated-transformer/):
 
-![1_eTzWiyQPKEtXF-FmIG3q-Q](Pictures\JayAlammar\1_eTzWiyQPKEtXF-FmIG3q-Q.png)
+<img src="Pictures\JayAlammar\1_eTzWiyQPKEtXF-FmIG3q-Q.png" alt="1_eTzWiyQPKEtXF-FmIG3q-Q"  /> 
 
 However, what’s important to note is that GPT3 **is not intelligent**. GPT3 is, in a sense, the worlds most advanced search engine. It distills all of the knowledge that it has seen into its weights and when asked a question it constructs the most likely answer from the training data, which was made by scraping the internet. This is demonstrated by its responses to Lacker's questions as well as neural networks hierarchal structures. Even if the neural network performed human like computation, the **transformer architecture is impractical for human level intelligence**. The main issue with systems like GPT3 and BERT is that they are feed forward neural networks. What this means is that information can only flow from input to output. Illustration of how a feed forward neural network looks like, [illustration by Stanford](https://cs231n.github.io/neural-networks-1/):
 
-![neural_net2](Pictures\CS231N\neural_net2.jpg)
+<img src="Pictures\CS231N\neural_net2.jpg" alt="neural_net2"  />
 
 The information flows from the input layer through both hidden layers and finally to an output layer. The key takeaway is that fundamentally BERT and GPT3 have the same structure in terms of information flow. Although attention layers in transformers can distribute information in a way that a normal neural network layer cannot, it still retains the fundamental property that it passes forward information from input to output. The first problem with feed forward neural nets is that they are inefficient. When processing information, the processing chain can often be broken down into multiple small repetitive tasks. For example, addition is a cyclical process, where single digit adders, or in a binary system full adders, can be used together to compute the final result. In a linear information system, to add three numbers there would have to be three adders chained together; this is not efficient, especially for neural networks, which would have to learn each adder unit. This is inefficient when it is possible to learn one unit and reuse it. Another issue with using feed forward neural networks to simulate "human level intelligence" is  thinking. Thinking is an optimization process. An example of this is: designing an layout for a webpage. GPT3 could do this task but it is limited in computation power. In feed forward neural networks, the amount of layers/neurons is directly correlated to its computation power. If we think as a group of layers making up one 'optimization unit' then we quickly see the neural network can only perform so many optimization steps before presenting the output. However, when discussing these operation blocks, it is important to note that such things do not usually occur in neural networks (with few exceptions due to architecture). This is because of the way backpropagation updates neural networks. Backprop, as seen in the image example, 'distills' the information hieratically. Another issue with transformers is their lack of memory. GPT2's maximum input length is 1024 tokens (two byte pairs); anything longer will not be incorporated into the model (the model uses sliding windows but it still has the 1024 byte pair limit). Humans deal with this differently; humans do not remember the exact words said, but still have an internal 'context variable' which is updated as they process new information, retaining all the information necessary to understand the conversation and help generate an answer. The gated recurrent unit (GRU) has been the best implementation of persistent memory in neural networks but GRU networks have fallen out of favor in NLP applications since the transformer's invention.
 
